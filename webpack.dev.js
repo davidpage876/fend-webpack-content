@@ -1,11 +1,15 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
     mode: 'development',
     devtool: 'source-map',
     entry: './src/client/index.js',
+    output: {
+        path: path.resolve(__dirname, "dist")
+    },
     module: {
         rules: [
             {
@@ -20,6 +24,7 @@ module.exports = {
             template: './src/client/views/index.html',
             filename: './index.html',
             scriptLoading: 'blocking'
-        })
+        }),
+        new CleanWebpackPlugin()
     ]
 }
